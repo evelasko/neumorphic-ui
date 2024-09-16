@@ -1,11 +1,6 @@
-import 'package:flutter/widgets.dart';
-import 'package:neumorphic_ui/src/widget/animation/animated_scale.dart'
-    as animationScale;
+import 'package:neumorphic_ui/src/widget/animation/animated_scale.dart' as animationScale;
 
 import '../../neumorphic_ui.dart';
-import '../neumorphic_box_shape.dart';
-import '../theme/neumorphic_theme.dart';
-import 'container.dart';
 
 /// A style to customize the [NeumorphicSwitch]
 ///
@@ -223,9 +218,7 @@ class NeumorphicSwitch extends StatelessWidget {
   }
 
   Color _getThumbColor(NeumorphicThemeData theme) {
-    Color? color = this.value == true
-        ? this.style.activeThumbColor
-        : this.style.inactiveThumbColor;
+    Color? color = this.value == true ? this.style.activeThumbColor : this.style.inactiveThumbColor;
     return color ?? theme.baseColor;
   }
 }

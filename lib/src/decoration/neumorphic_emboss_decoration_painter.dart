@@ -1,8 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import '../neumorphic_box_shape.dart';
 import '../theme/theme.dart';
@@ -52,25 +48,17 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
   }
 
   void _updateCache(
-      {required Offset offset,
-      required ImageConfiguration configuration,
-      required NeumorphicStyle newStyle}) {
+      {required Offset offset, required ImageConfiguration configuration, required NeumorphicStyle newStyle}) {
     bool invalidateSize = false;
     if (configuration.size != null) {
-      invalidateSize = this
-          ._cache
-          .updateSize(newOffset: offset, newSize: configuration.size!);
+      invalidateSize = this._cache.updateSize(newOffset: offset, newSize: configuration.size!);
       if (invalidateSize) {
-        _cache.updatePath(
-            newPath:
-                shape.customShapePathProvider.getPath(configuration.size!));
+        _cache.updatePath(newPath: shape.customShapePathProvider.getPath(configuration.size!));
       }
     }
 
     bool invalidateLightSource = false;
-    invalidateLightSource = this
-        ._cache
-        .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
+    invalidateLightSource = this._cache.updateLightSource(style.lightSource, style.oppositeShadowLightSource);
 
     bool invalidateColor = false;
     if (style.color != null) {
@@ -89,10 +77,8 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateShadowColors = this._cache.updateShadowColor(
-          newShadowLightColorEmboss:
-              style.shadowLightColorEmboss ?? Color(0xFFFFFFFF),
-          newShadowDarkColorEmboss:
-              style.shadowDarkColorEmboss ?? Color(0xFF000000),
+          newShadowLightColorEmboss: style.shadowLightColorEmboss ?? Color(0xFFFFFFFF),
+          newShadowDarkColorEmboss: style.shadowDarkColorEmboss ?? Color(0xFF000000),
           newIntensity: style.intensity ?? 0.25,
         );
     if (invalidateShadowColors) {
@@ -117,8 +103,7 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       ..restore();
   }
 
-  void _drawBorder(
-      {required Canvas canvas, required Offset offset, required Path path}) {
+  void _drawBorder({required Canvas canvas, required Offset offset, required Path path}) {
     if (style.border.width != null && style.border.width! > 0) {
       canvas
         ..save()
@@ -133,15 +118,13 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
   }
 
   void _paintShadows(Canvas canvas, Path path) {
-    final Matrix4 matrix4 = Matrix4.identity()
-      ..scale(_cache.scaleX, _cache.scaleY);
+    final Matrix4 matrix4 = Matrix4.identity()..scale(_cache.scaleX, _cache.scaleY);
 
     canvas
       ..saveLayer(_cache.layerRect, _whiteShadowPaint)
       ..translate(_cache.originOffset.dx, _cache.originOffset.dy)
       ..drawPath(path, _whiteShadowPaint)
-      ..translate(
-          _cache.witheShadowLeftTranslation, _cache.witheShadowTopTranslation)
+      ..translate(_cache.witheShadowLeftTranslation, _cache.witheShadowTopTranslation)
       ..drawPath(path.transform(matrix4.storage), _whiteShadowMaskPaint)
       ..restore();
 
@@ -149,16 +132,14 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       ..saveLayer(_cache.layerRect, _blackShadowPaint)
       ..translate(_cache.originOffset.dx, _cache.originOffset.dy)
       ..drawPath(path, _blackShadowPaint)
-      ..translate(
-          _cache.blackShadowLeftTranslation, _cache.blackShadowTopTranslation)
+      ..translate(_cache.blackShadowLeftTranslation, _cache.blackShadowTopTranslation)
       ..drawPath(path.transform(matrix4.storage), _blackShadowMaskPaint)
       ..restore();
   }
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    _updateCache(
-        offset: offset, configuration: configuration, newStyle: this.style);
+    _updateCache(offset: offset, configuration: configuration, newStyle: this.style);
     for (var subPath in _cache.subPaths) {
       if (drawBackground) {
         _paintBackground(canvas, subPath);

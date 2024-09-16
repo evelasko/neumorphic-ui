@@ -1,5 +1,4 @@
 import '../../neumorphic_ui.dart';
-import 'neumorphic_path_provider.dart';
 import 'dart:math' as math;
 
 class BeveledPathProvider extends NeumorphicPathProvider {

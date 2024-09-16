@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:neumorphic_ui/neumorphic_ui.dart';
 
 class NeumorphicApp extends StatelessWidget {
@@ -91,15 +90,15 @@ class NeumorphicApp extends StatelessWidget {
       // primaryColorBrightness:
       //     ThemeData.estimateBrightnessForColor(theme.accentColor),
       textTheme: theme.textTheme,
-      scaffoldBackgroundColor: theme.baseColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: theme.variantColor),
+      scaffoldBackgroundColor: theme.baseColor,
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: theme.variantColor),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final materialTheme = this.materialTheme ?? _getMaterialTheme(theme);
-    final materialDarkTheme =
-        this.materialDarkTheme ?? _getMaterialTheme(darkTheme);
+    final materialDarkTheme = this.materialDarkTheme ?? _getMaterialTheme(darkTheme);
     return NeumorphicTheme(
       theme: theme,
       darkTheme: darkTheme,

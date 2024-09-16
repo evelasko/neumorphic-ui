@@ -2,8 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:neumorphic_ui/src/neumorphic_icons.dart';
 import 'package:neumorphic_ui/src/widget/container.dart';
 
-import '../neumorphic_box_shape.dart';
-import '../theme/neumorphic_theme.dart';
 import 'button.dart';
 
 typedef void NeumorphicCheckboxListener<T>(T value);
@@ -150,18 +148,13 @@ class NeumorphicCheckbox extends StatelessWidget {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
     final selectedColor = this.style.selectedColor ?? theme.accentColor;
 
-    final double selectedDepth =
-        -1 * (this.style.selectedDepth ?? theme.depth).abs();
-    final double unselectedDepth =
-        (this.style.unselectedDepth ?? theme.depth).abs();
-    final double selectedIntensity =
-        (this.style.selectedIntensity ?? theme.intensity)
-            .abs()
-            .clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
-    final double unselectedIntensity = this
-        .style
-        .unselectedIntensity
+    final double selectedDepth = -1 * (this.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth = (this.style.unselectedDepth ?? theme.depth).abs();
+    final double selectedIntensity = (this.style.selectedIntensity ?? theme.intensity)
+        .abs()
         .clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+    final double unselectedIntensity =
+        this.style.unselectedIntensity.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
     double depth = isSelected ? selectedDepth : unselectedDepth;
     if (!this.isEnabled) {

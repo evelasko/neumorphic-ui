@@ -1,9 +1,4 @@
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:neumorphic_ui/neumorphic_ui.dart';
-
-import 'container.dart';
-import 'progress.dart';
 
 typedef void NeumorphicRangeSliderLowListener(double percent);
 typedef void NeumorphicRangeSliderHighListener(double percent);
@@ -143,8 +138,7 @@ class NeumorphicRangeSlider extends StatefulWidget {
 
   double get percentLow => (((valueLow.clamp(min, max)) - min) / ((max - min)));
 
-  double get percentHigh =>
-      (((valueHigh.clamp(min, max)) - min) / ((max - min)));
+  double get percentHigh => (((valueHigh.clamp(min, max)) - min) / ((max - min)));
 
   @override
   createState() => _NeumorphicRangeSliderState();
@@ -167,8 +161,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
     Function panUpdate = (DragUpdateDetails details) {
       final tapPos = details.localPosition;
       final newPercent = tapPos.dx / constraints.maxWidth;
-      final newValue = ((widget.min + (widget.max - widget.min) * newPercent))
-          .clamp(widget.min, widget.max);
+      final newValue = ((widget.min + (widget.max - widget.min) * newPercent)).clamp(widget.min, widget.max);
 
       switch (_activeThumb) {
         case ActiveThumb.low:
@@ -224,8 +217,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
                   widget.onPanEnded!(_activeThumb);
                 }
               },
-              child: widget.thumb ??
-                  _generateThumb(context, thumbSize, widget.style.variant)),
+              child: widget.thumb ?? _generateThumb(context, thumbSize, widget.style.variant)),
         ),
         Align(
           alignment: Alignment(
@@ -248,8 +240,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
                   widget.onPanEnded!(_activeThumb);
                 }
               },
-              child: widget.thumb ??
-                  _generateThumb(context, thumbSize, widget.style.accent)),
+              child: widget.thumb ?? _generateThumb(context, thumbSize, widget.style.accent)),
         ),
       ],
     );
@@ -280,13 +271,10 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: widget.style.borderRadius,
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        widget.style.variant ?? theme.variantColor,
-                        widget.style.accent ?? theme.accentColor,
-                      ]),
+                  gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
+                    widget.style.variant ?? theme.variantColor,
+                    widget.style.accent ?? theme.accentColor,
+                  ]),
                 ),
               ),
             );

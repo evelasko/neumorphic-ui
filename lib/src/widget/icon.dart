@@ -1,7 +1,4 @@
-import 'package:flutter/widgets.dart';
-
 import '../../neumorphic_ui.dart';
-import '../theme/neumorphic_theme.dart';
 
 export '../decoration/neumorphic_decorations.dart';
 export '../neumorphic_box_shape.dart';
